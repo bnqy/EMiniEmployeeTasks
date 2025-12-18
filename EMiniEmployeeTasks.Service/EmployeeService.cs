@@ -4,6 +4,7 @@ using EMiniEmployeeTasks.Entities.Domain.Exceptions;
 using EMiniEmployeeTasks.Entities.Domain.Models;
 using EMiniEmployeeTasks.Service.Contracts;
 using EMiniEmployeeTasks.Shared.DTOs;
+using System.ComponentModel.Design;
 
 namespace EMiniEmployeeTasks.Service;
 
@@ -69,5 +70,19 @@ public class EmployeeService : IEmployeeService
         var employeeDTO = mapper.Map<EmployeeDTO>(employee);
 
         return employeeDTO;
+    }
+
+    public async Task UpdateEmployeeAsync(int id, EmployeeForUpdateDTO employeeForUpdateDTO, bool trackChanges)
+    {
+        var employee = await this.repositoryManager.Employee.GetEmployeeAsync(id, trackChanges);
+
+        if (employee is null)
+        {
+            throw new EmployeeNotFoundException(id);
+        }
+
+        this.mapper.Map(employeeForUpdateDTO, employee);
+
+        await this.repositoryManager.SaveAsync();
     }
 }

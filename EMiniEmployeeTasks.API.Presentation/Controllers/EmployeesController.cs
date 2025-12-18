@@ -50,4 +50,12 @@ public class EmployeesController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateEmployee(int id, [FromBody] EmployeeForUpdateDTO employeeForUpdateDTO)
+    {
+        await this._serviceManager.EmployeeService.UpdateEmployeeAsync(id, employeeForUpdateDTO, true);
+
+        return NoContent();
+    }
 }

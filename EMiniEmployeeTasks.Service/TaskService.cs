@@ -70,4 +70,18 @@ public class TaskService : ITaskService
 
         return taskDto;
     }
+
+    public async Task UpdateTaskAsync(int id, TaskForUpdateDTO taskForUpdateDTO, bool trackChanges)
+    {
+        var task = await this.repositoryManager.TaskItem.GetTaskAsync(id, trackChanges);
+
+        if (task is null)
+        {
+            throw new TaskNotFoundException(id);
+        }
+
+        this.mapper.Map(taskForUpdateDTO, task);
+
+        await this.repositoryManager.SaveAsync();
+    }
 }

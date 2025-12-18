@@ -15,6 +15,12 @@ namespace EMiniEmployeeTasks
             CreateMap<EmployeeForCreationDTO, Employee>();
 
             CreateMap<TaskForCreationDTO, TaskItem>();
+
+            CreateMap<EmployeeForUpdateDTO, Employee>()
+                .ReverseMap();
+
+            CreateMap<TaskForUpdateDTO, TaskItem>()
+                .ReverseMap();
         }
     }
 }

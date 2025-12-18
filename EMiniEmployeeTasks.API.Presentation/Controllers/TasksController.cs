@@ -51,4 +51,12 @@ public class TasksController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateTask(int id, [FromBody] TaskForUpdateDTO taskForUpdateDTO)
+    {
+        await this._serviceManager.TaskService.UpdateTaskAsync(id, taskForUpdateDTO, true);
+
+        return NoContent();
+    }
 }
