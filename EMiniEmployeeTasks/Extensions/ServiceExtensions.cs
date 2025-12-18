@@ -1,6 +1,9 @@
 ﻿using Contracts.Interfaces;
 using EMiniEmployeeTasks.Repository;
+using EMiniEmployeeTasks.Service;
+using EMiniEmployeeTasks.Service.Contracts;
 using LoggerService;
+using Microsoft.EntityFrameworkCore;
 
 namespace EMiniEmployeeTasks.Extensions;
 
@@ -33,4 +36,16 @@ public static class ServiceExtensions
     {
         services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
+
+    public static void ConfigServiceManager(this IServiceCollection services)
+    {
+        services.AddScoped<IServiceManager, ServiceManager>();
+    }
+
+    public static void ConfigSqlContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<RepositoryContext>(opts => 
+        opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
+    }
+
 }

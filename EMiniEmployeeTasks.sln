@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36616.10 d17.14
+VisualStudioVersion = 17.14.36616.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMiniEmployeeTasks", "EMiniEmployeeTasks\EMiniEmployeeTasks.csproj", "{83ED60C6-62AA-4DA5-924A-5E8528CEBEC0}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMiniEmployeeTasks.Entities.Domain", "EMiniEmployeeTasks.Entities.Domain\EMiniEmployeeTasks.Entities.Domain.csproj", "{B2BFE03D-1A58-47F8-8BD4-1880D74071E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMiniEmployeeTasks.Repository", "EMiniEmployeeTasks.Repository\EMiniEmployeeTasks.Repository.csproj", "{E496E65D-C753-4808-9E91-D8F3DF1FB84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMiniEmployeeTasks.Service.Contracts", "EMiniEmployeeTasks.Service.Contracts\EMiniEmployeeTasks.Service.Contracts.csproj", "{3DD2D959-D364-4326-8AB1-279910568771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMiniEmployeeTasks.Service", "EMiniEmployeeTasks.Service\EMiniEmployeeTasks.Service.csproj", "{506844A8-E119-4F7C-8A00-64F8E79F0E50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{E496E65D-C753-4808-9E91-D8F3DF1FB84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E496E65D-C753-4808-9E91-D8F3DF1FB84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E496E65D-C753-4808-9E91-D8F3DF1FB84A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD2D959-D364-4326-8AB1-279910568771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD2D959-D364-4326-8AB1-279910568771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD2D959-D364-4326-8AB1-279910568771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD2D959-D364-4326-8AB1-279910568771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506844A8-E119-4F7C-8A00-64F8E79F0E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506844A8-E119-4F7C-8A00-64F8E79F0E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506844A8-E119-4F7C-8A00-64F8E79F0E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506844A8-E119-4F7C-8A00-64F8E79F0E50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
