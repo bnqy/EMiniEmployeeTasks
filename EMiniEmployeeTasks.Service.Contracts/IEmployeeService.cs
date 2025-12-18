@@ -10,4 +10,5 @@ public interface IEmployeeService
     Task<EmployeeDTO> CreateEmployeeAsync(EmployeeForCreationDTO employeeForCreationDTO);
     Task DeleteEmployeeAsync(int id, bool trackChanges);
     Task UpdateEmployeeAsync(int id, EmployeeForUpdateDTO employeeForUpdateDTO, bool trackChanges);
+    Task<IEnumerable<TaskDTO>> GetEmployeeTasksAsync(int id, bool trackChanges);
 }

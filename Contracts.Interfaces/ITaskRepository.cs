@@ -11,4 +11,6 @@ public interface ITaskRepository
     void CreateTask(TaskItem task);
 
     void DeleteTask(TaskItem taskItem);
+
+    Task<IEnumerable<TaskItem>> GetTasksByEmployeeIdAsync(int id, bool trackChanges);
 }

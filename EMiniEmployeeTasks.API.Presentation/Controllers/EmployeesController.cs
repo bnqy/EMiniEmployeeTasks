@@ -58,4 +58,13 @@ public class EmployeesController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet("{id:int}/tasks")]
+    public async Task<IActionResult> GetEmployeeTasks(int id)
+    {
+        var tasks = await _serviceManager.EmployeeService
+            .GetEmployeeTasksAsync(id, trackChanges: false);
+
+        return Ok(tasks);
+    }
 }

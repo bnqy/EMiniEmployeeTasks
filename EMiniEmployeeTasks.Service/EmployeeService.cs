@@ -72,6 +72,22 @@ public class EmployeeService : IEmployeeService
         return employeeDTO;
     }
 
+    public async Task<IEnumerable<TaskDTO>> GetEmployeeTasksAsync(int id, bool trackChanges)
+    {
+        var employee = await repositoryManager.Employee
+            .GetEmployeeAsync(id, trackChanges);
+
+        if (employee is null)
+        {
+            throw new EmployeeNotFoundException(id);
+        }
+
+        var tasks = await repositoryManager.TaskItem
+            .GetTasksByEmployeeIdAsync(id, trackChanges);
+
+        return mapper.Map<IEnumerable<TaskDTO>>(tasks);
+    }
+
     public async Task UpdateEmployeeAsync(int id, EmployeeForUpdateDTO employeeForUpdateDTO, bool trackChanges)
     {
         var employee = await this.repositoryManager.Employee.GetEmployeeAsync(id, trackChanges);

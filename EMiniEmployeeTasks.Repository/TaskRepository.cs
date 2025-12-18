@@ -33,4 +33,11 @@ public class TaskRepository : RepositoryBase<TaskItem>, ITaskRepository
         return await FindByCondition(t => t.Id.Equals(id), trackChanges)
             .SingleOrDefaultAsync();
     }
+
+    public async Task<IEnumerable<TaskItem>> GetTasksByEmployeeIdAsync(int id, bool trackChanges)
+    {
+        return await FindByCondition( t => t.EmployeeId == id,trackChanges)
+            .OrderBy(t => t.Id)
+            .ToListAsync();
+    }
 }
