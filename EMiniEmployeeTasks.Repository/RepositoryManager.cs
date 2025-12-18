@@ -21,8 +21,8 @@ public class RepositoryManager : IRepositoryManager
 
     public ITaskRepository TaskItem => this.taskRepository.Value;
 
-    public void SaveAsync()
+    public async Task SaveAsync()
     {
-        this.repositoryContext.SaveChanges();
+        await this.repositoryContext.SaveChangesAsync();
     }
 }

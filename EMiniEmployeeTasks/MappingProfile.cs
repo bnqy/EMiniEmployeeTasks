@@ -11,6 +11,10 @@ namespace EMiniEmployeeTasks
             CreateMap<Employee, EmployeeDTO>();
 
             CreateMap<TaskItem, TaskDTO>();
+
+            CreateMap<EmployeeForCreationDTO, Employee>();
+
+            CreateMap<TaskForCreationDTO, TaskItem>();
         }
     }
 }

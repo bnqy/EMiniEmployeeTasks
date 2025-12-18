@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Contracts.Interfaces;
+using EMiniEmployeeTasks.Entities.Domain.Exceptions;
+using EMiniEmployeeTasks.Entities.Domain.Models;
 using EMiniEmployeeTasks.Service.Contracts;
 using EMiniEmployeeTasks.Shared.DTOs;
 
@@ -20,6 +22,18 @@ public class TaskService : ITaskService
         this.mapper = mapper;
     }
 
+    public async Task<TaskDTO> CreateTaskAsync(TaskForCreationDTO taskForCreationDTO)
+    {
+        var task = this.mapper.Map<TaskItem>(taskForCreationDTO);
+        this.repositoryManager.TaskItem.CreateTask(task);
+
+        await this.repositoryManager.SaveAsync();
+
+        var taskDTO = this.mapper.Map<TaskDTO>(task);
+
+        return taskDTO;
+    }
+
     public async Task<IEnumerable<TaskDTO>> GetAllTasksAsync(bool trackChanges)
     {
         var tasks = await repositoryManager.TaskItem.GetAllTasksAsync(trackChanges);
@@ -32,6 +46,11 @@ public class TaskService : ITaskService
     public async Task<TaskDTO> GetTaskAsync(int id, bool trackChanges)
     {
         var task = await repositoryManager.TaskItem.GetTaskAsync(id, trackChanges);
+
+        if (task is null)
+        {
+            throw new TaskNotFoundException(id);
+        }
 
         var taskDto = mapper.Map<TaskDTO>(task);
 

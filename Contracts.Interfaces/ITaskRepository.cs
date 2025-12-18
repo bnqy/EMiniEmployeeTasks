@@ -7,4 +7,6 @@ public interface ITaskRepository
     Task<IEnumerable<TaskItem>> GetAllTasksAsync(bool trackChanges);
 
     Task<TaskItem> GetTaskAsync(int id, bool trackChanges);
+
+    void CreateTask(TaskItem task);
 }

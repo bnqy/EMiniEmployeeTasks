@@ -11,6 +11,11 @@ public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
     }
 
+    public void CreateEmployee(Employee employee)
+    {
+        Create(employee);
+    }
+
     public async Task<IEnumerable<Employee>> GetAllEmployeesAsync(bool trackChanges)
     {
         return await FindAll(trackChanges)

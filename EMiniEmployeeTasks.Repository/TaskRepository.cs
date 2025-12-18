@@ -11,6 +11,11 @@ public class TaskRepository : RepositoryBase<TaskItem>, ITaskRepository
 
     }
 
+    public void CreateTask(TaskItem task)
+    {
+        Create(task);
+    }
+
     public async Task<IEnumerable<TaskItem>> GetAllTasksAsync(bool trackChanges)
     {
         return await FindAll(trackChanges)

@@ -1,4 +1,5 @@
 ﻿using EMiniEmployeeTasks.Service.Contracts;
+using EMiniEmployeeTasks.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,19 @@ public class TasksController : ControllerBase
         return Ok(tasks);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "TaskById")]
     public async Task<IActionResult> GetTaskById(int id)
     {
         var task = await _serviceManager.TaskService.GetTaskAsync(id, trackChanges: false);
 
         return Ok(task);
+    }
+
+    [HttpPost(Name = "CreateTask")]
+    public async Task<IActionResult> CreateTask([FromBody] TaskForCreationDTO taskForCreationDTO)
+    {
+        var addedTask = await this._serviceManager.TaskService.CreateTaskAsync(taskForCreationDTO);
+
+        return this.CreatedAtRoute("TaskById", new { id = addedTask.Id }, addedTask);
     }
 }

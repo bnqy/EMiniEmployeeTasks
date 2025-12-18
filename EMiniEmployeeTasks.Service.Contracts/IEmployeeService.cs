@@ -7,4 +7,5 @@ public interface IEmployeeService
 {
     Task<IEnumerable<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges);
     Task<EmployeeDTO> GetEmployeeAsync(int id, bool trackChanges);
+    Task<EmployeeDTO> CreateEmployeeAsync(EmployeeForCreationDTO employeeForCreationDTO);
 }
