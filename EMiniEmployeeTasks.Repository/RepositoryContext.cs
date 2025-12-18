@@ -16,9 +16,13 @@ public class RepositoryContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
         modelBuilder.ApplyConfiguration(new TaskItemConfiguration());
+
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 
     public DbSet<Employee>? Employees { get; set; }
 
     public DbSet<TaskItem>? Tasks { get; set; }
+
+    public DbSet<User>? Users { get; set; }
 }

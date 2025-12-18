@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Contracts.Interfaces\Contracts.Interfaces.csproj" />
     <ProjectReference Include="..\EMiniEmployeeTasks.Entities.Domain\EMiniEmployeeTasks.Entities.Domain.csproj" />
+    <ProjectReference Include="..\EMiniEmployeeTasks.Service\EMiniEmployeeTasks.Service.csproj" />
   </ItemGroup>
 
 </Project>
