@@ -1,4 +1,7 @@
-﻿namespace EMiniEmployeeTasks.Extensions;
+﻿using Contracts.Interfaces;
+using LoggerService;
+
+namespace EMiniEmployeeTasks.Extensions;
 
 public static class ServiceExtensions
 {
@@ -21,4 +24,7 @@ public static class ServiceExtensions
         {
 
         });
+
+    public static void ConfigLoggerService(this IServiceCollection services) =>
+        services.AddSingleton<ILoggerManager, LoggerManager>();
 }
