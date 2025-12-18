@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EMiniEmployeeTasks.Entities.Domain\EMiniEmployeeTasks.Entities.Domain.csproj" />
-    <ProjectReference Include="..\EMiniEmployeeTasks.Shared\EMiniEmployeeTasks.Shared.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EMiniEmployeeTasks.Service.Contracts\EMiniEmployeeTasks.Service.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

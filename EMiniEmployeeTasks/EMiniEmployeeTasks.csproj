@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EMiniEmployeeTasks.API.Presentation\EMiniEmployeeTasks.API.Presentation.csproj" />
     <ProjectReference Include="..\EMiniEmployeeTasks.Repository\EMiniEmployeeTasks.Repository.csproj" />
     <ProjectReference Include="..\EMiniEmployeeTasks.Service\EMiniEmployeeTasks.Service.csproj" />
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />

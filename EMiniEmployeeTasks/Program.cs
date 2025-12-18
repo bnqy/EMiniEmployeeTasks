@@ -1,3 +1,4 @@
+using EMiniEmployeeTasks.API.Presentation;
 using EMiniEmployeeTasks.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
@@ -13,10 +14,14 @@ builder.Services.ConfigIISIntegration();
 builder.Services.ConfigLoggerService(); 
 builder.Services.ConfigRepositoryManager();
 builder.Services.ConfigServiceManager();
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.ConfigSqlContext(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(EMiniEmployeeTasks.API.Presentation.AssemblyReference).Assembly);
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

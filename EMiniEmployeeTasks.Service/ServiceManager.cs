@@ -1,4 +1,5 @@
-﻿using Contracts.Interfaces;
+﻿using AutoMapper;
+using Contracts.Interfaces;
 using EMiniEmployeeTasks.Service.Contracts;
 
 namespace EMiniEmployeeTasks.Service;
@@ -9,10 +10,11 @@ public class ServiceManager : IServiceManager
     private readonly Lazy<ITaskService> _taskService;
 
     public ServiceManager(IRepositoryManager repositoryManager, 
-        ILoggerManager logger)
+        ILoggerManager logger,
+        IMapper mapper)
     {
-        _employeeService = new Lazy<IEmployeeService>(() => new EmployeeService(repositoryManager, logger));
-        _taskService = new Lazy<ITaskService>(() => new TaskService(repositoryManager, logger));
+        _employeeService = new Lazy<IEmployeeService>(() => new EmployeeService(repositoryManager, logger, mapper));
+        _taskService = new Lazy<ITaskService>(() => new TaskService(repositoryManager, logger, mapper));
     }
 
     public IEmployeeService EmployeeService => _employeeService.Value;

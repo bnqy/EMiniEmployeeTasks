@@ -1,0 +1,16 @@
+﻿using AutoMapper;
+using EMiniEmployeeTasks.Entities.Domain.Models;
+using EMiniEmployeeTasks.Shared.DTOs;
+
+namespace EMiniEmployeeTasks
+{
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<Employee, EmployeeDTO>();
+
+            CreateMap<TaskItem, TaskDTO>();
+        }
+    }
+}
