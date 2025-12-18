@@ -1,3 +1,4 @@
+using Contracts.Interfaces;
 using EMiniEmployeeTasks.API.Presentation;
 using EMiniEmployeeTasks.Extensions;
 using EMiniEmployeeTasks.Repository;
@@ -83,12 +84,23 @@ builder.Services
 builder.Services.AddAuthorization();
 var app = builder.Build();
 
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigExceptionHandler(logger);
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+if (app.Environment.IsProduction())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseHsts();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
