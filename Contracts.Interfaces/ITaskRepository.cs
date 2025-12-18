@@ -9,4 +9,6 @@ public interface ITaskRepository
     Task<TaskItem> GetTaskAsync(int id, bool trackChanges);
 
     void CreateTask(TaskItem task);
+
+    void DeleteTask(TaskItem taskItem);
 }

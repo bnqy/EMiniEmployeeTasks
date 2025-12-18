@@ -43,4 +43,12 @@ public class TasksController : ControllerBase
 
         return this.CreatedAtRoute("TaskById", new { id = addedTask.Id }, addedTask);
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteTask(int id)
+    {
+        await this._serviceManager.TaskService.DeleteTaskAsync(id, false);
+
+        return NoContent();
+    }
 }

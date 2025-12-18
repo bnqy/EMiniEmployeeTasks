@@ -1,6 +1,7 @@
 using EMiniEmployeeTasks.API.Presentation;
 using EMiniEmployeeTasks.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +16,12 @@ builder.Services.ConfigLoggerService();
 builder.Services.ConfigRepositoryManager();
 builder.Services.ConfigServiceManager();
 builder.Services.AddAutoMapper(typeof(Program));
-
 builder.Services.ConfigSqlContext(builder.Configuration);
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(EMiniEmployeeTasks.API.Presentation.AssemblyReference).Assembly);

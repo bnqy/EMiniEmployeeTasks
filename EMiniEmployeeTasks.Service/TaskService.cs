@@ -34,6 +34,20 @@ public class TaskService : ITaskService
         return taskDTO;
     }
 
+    public async Task DeleteTaskAsync(int id, bool trackChanges)
+    {
+        var task = await this.repositoryManager.TaskItem.GetTaskAsync(id, trackChanges);
+
+        if (task is null)
+        {
+            throw new TaskNotFoundException(id);
+        }
+
+        this.repositoryManager.TaskItem.DeleteTask(task);
+
+        await this.repositoryManager.SaveAsync();
+    }
+
     public async Task<IEnumerable<TaskDTO>> GetAllTasksAsync(bool trackChanges)
     {
         var tasks = await repositoryManager.TaskItem.GetAllTasksAsync(trackChanges);

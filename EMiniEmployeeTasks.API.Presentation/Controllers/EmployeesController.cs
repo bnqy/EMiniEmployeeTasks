@@ -42,4 +42,12 @@ public class EmployeesController : ControllerBase
 
         return this.CreatedAtRoute("EmployeeById", new { id = addedEmployee.Id }, addedEmployee);
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteEmployee(int id)
+    {
+        await this._serviceManager.EmployeeService.DeleteEmployeeAsync(id, false);
+
+        return NoContent();
+    }
 }

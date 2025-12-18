@@ -34,6 +34,20 @@ public class EmployeeService : IEmployeeService
         return employeeDTO;
     }
 
+    public async Task DeleteEmployeeAsync(int id, bool trackChanges)
+    {
+        var employee = await this.repositoryManager.Employee.GetEmployeeAsync(id, trackChanges);
+
+        if (employee is null)
+        {
+            throw new EmployeeNotFoundException(id);
+        }
+
+        this.repositoryManager.Employee.DeleteEmployee(employee);
+
+        await this.repositoryManager.SaveAsync();
+    }
+
     public async Task<IEnumerable<EmployeeDTO>> GetAllEmployeesAsync(bool trackChanges)
     {
         var employees = await repositoryManager.Employee.GetAllEmployeesAsync(trackChanges);

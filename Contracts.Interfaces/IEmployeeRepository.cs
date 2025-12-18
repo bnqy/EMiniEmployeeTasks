@@ -9,4 +9,6 @@ public interface IEmployeeRepository
     Task<Employee> GetEmployeeAsync(int id, bool trackChanges);
 
     void CreateEmployee(Employee employee);
+
+    void DeleteEmployee(Employee employee);
 }
