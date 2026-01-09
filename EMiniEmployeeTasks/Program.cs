@@ -6,6 +6,7 @@ using EMiniEmployeeTasks.Repository.Seed;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NLog;
@@ -15,7 +16,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), @"\nlog.config"));
+// LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), @"\nlog.config"));
+var nlogPath = Path.Combine(AppContext.BaseDirectory, "nlog.config");
+LogManager.Setup().LoadConfigurationFromFile(nlogPath);
+
+Console.WriteLine($"{nlogPath} -  {AppContext.BaseDirectory} -  {Directory.GetCurrentDirectory()}");
 
 builder.Services.ConfigCors();
 builder.Services.ConfigIISIntegration();
@@ -24,6 +29,7 @@ builder.Services.ConfigRepositoryManager();
 builder.Services.ConfigServiceManager();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.ConfigSqlContext(builder.Configuration);
+Console.WriteLine("sqlConnection = " + builder.Configuration.GetConnectionString("sqlConnection"));
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -118,10 +124,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment())
 {
+    using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<RepositoryContext>();
+    await context.Database.MigrateAsync();
     await UserSeeder.SeedAsync(context);
 }
+
 
 app.Run();
